@@ -217,6 +217,22 @@ if __name__ == '__main__':
     '''
     Create sqlite command to add all the values
     '''
+    db = sqlite3.connect('tick_data_minute.db')
+    c = db.cursor()
+    command = 'CREATE TABLE IF NOT EXISTS tick_data_minute '
+    command += '(timestamp DATE PRIMARY KEY, '
+    command += 'bitfinex DOUBLE, '
+    command += 'binance DOUBLE, '
+    command += 'okex DOUBLE, '
+    command += 'huobi DOUBLE, '
+    command += 'bitz DOUBLE, '
+    command += 'coinbene DOUBLE, '
+    command += 'zb DOUBLE, '
+    command += 'bitmart DOUBLE, '
+    command += 'idax DOUBLE, '
+    command += 'bibox DOUBLE);'
+    c.execute(command)
+
     command = 'INSERT INTO tick_data_minute '
     command += '(timestamp, bitfinex, binance, okex, huobi, bitz, coinbene, zb, bitmart, idax, bibox)'
     command += ' VALUES '
@@ -231,10 +247,9 @@ if __name__ == '__main__':
     command += str(bitmart) + ', '
     command += str(idax) + ', '
     command += str(bibox) + ');'
-    db = sqlite3.connect('tick_data_minute.db')
-    c = db.cursor()
     c.execute(command)
-
+    db.commit()
+    db.close()
     '''
     For debugging purposes
     '''
