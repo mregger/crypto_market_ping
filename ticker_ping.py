@@ -32,7 +32,7 @@ import time
 import datetime
 import sqlite3
 
-TIMEOUT = 5.0
+TIMEOUT = 8.0
 
 def ping_bitfinex(symbol='btcusd'):
     pass
